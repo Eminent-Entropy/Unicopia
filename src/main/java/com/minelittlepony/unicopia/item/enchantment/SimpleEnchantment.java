@@ -1,5 +1,6 @@
 package com.minelittlepony.unicopia.item.enchantment;
 
+import com.minelittlepony.unicopia.Unicopia;
 import com.minelittlepony.unicopia.entity.Living;
 
 import net.minecraft.enchantment.Enchantment;
@@ -10,6 +11,8 @@ import net.minecraft.item.ItemStack;
 public class SimpleEnchantment extends Enchantment {
 
     private final boolean cursed;
+
+    private final boolean treasure;
 
     private final boolean allItems;
 
@@ -23,6 +26,7 @@ public class SimpleEnchantment extends Enchantment {
         this.allItems = false;
         this.maxLevel = maxLevel;
         this.slots = slots;
+        this.treasure = cursed ? Unicopia.getConfig().makeCursesTreasure.get() : false;
     }
 
     protected SimpleEnchantment(Rarity rarity, boolean cursed, int maxLevel, EquipmentSlot... slots) {
@@ -31,6 +35,7 @@ public class SimpleEnchantment extends Enchantment {
         this.allItems = true;
         this.maxLevel = maxLevel;
         this.slots = slots;
+        this.treasure = cursed ? Unicopia.getConfig().makeCursesTreasure.get() : false;
     }
 
     public void onUserTick(Living<?> user, int level) {
@@ -62,6 +67,11 @@ public class SimpleEnchantment extends Enchantment {
     @Override
     public boolean isCursed() {
         return cursed;
+    }
+
+    @Override
+    public boolean isTreasure() {
+        return treasure;
     }
 
     public static class Data {

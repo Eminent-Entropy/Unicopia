@@ -16,6 +16,9 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
     public final Setting<Boolean> enableCheats = value("server", "enableCheats", false)
             .addComment("Allows use of the /race, /disguise, and /gravity commands");
 
+    public final Setting<Boolean> makeCursesTreasure = value("server", "makeCursesTreasure", false)
+            .addComment("If true the curses added by unicopia will not appear in the enchanting table");
+    
     public final Setting<Race> preferredRace = value("client", "preferredRace", Race.EARTH)
             .addComment("The default preferred race")
             .addComment("This is the race a client requests when first joining a game")
