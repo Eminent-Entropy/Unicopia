@@ -2,6 +2,7 @@ package com.minelittlepony.unicopia.entity.effect;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.minelittlepony.unicopia.Unicopia;
 import com.minelittlepony.unicopia.EquinePredicates;
 import com.minelittlepony.unicopia.UTags;
 import com.minelittlepony.unicopia.entity.player.Pony;
@@ -37,7 +38,7 @@ public class SunBlindnessStatusEffect extends StatusEffect {
         if (!hasSunExposure(entity)) {
             entity.setStatusEffect(new StatusEffectInstance(this, (int)(state.getDuration() * 0.8F), amplifier, true, false), entity);
         } else {
-            if (entity.age % 15 == 0) {
+            if (entity.age % 15 == 0 && Unicopia.getConfig().batBlindness.get() > 2) {
                 entity.damage(DamageSource.IN_FIRE, amplifier / 20F);
             }
         }

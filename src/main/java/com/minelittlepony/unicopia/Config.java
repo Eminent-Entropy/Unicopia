@@ -23,6 +23,13 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
             .addComment("If true alicorns are a vaild choosable race in survival")
             .addComment("May require cheats enabled to allow the /race command to access");
 
+    public final Setting<Integer> batBlindness = value("server", "batBlindness", 3)
+            .addComment("Sets how much a bat pony is affected by the sun")
+            .addComment("0 - no effect")
+            .addComment("1 - whiteout on inital contact")
+            .addComment("2 - added ringing noise")
+            .addComment("3 - added burning effect (default)");
+
     public final Setting<Race> preferredRace = value("client", "preferredRace", Race.EARTH)
             .addComment("The default preferred race")
             .addComment("This is the race a client requests when first joining a game")
