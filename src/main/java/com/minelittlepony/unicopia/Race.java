@@ -54,6 +54,8 @@ public final class Race implements Affine {
 
     public static void bootstrap() {}
 
+    private static boolean allowAlicorn = Unicopia.getConfig().allowAlicorn.get();
+
     private final boolean magic;
     private final FlightType flight;
     private final boolean earth;
@@ -82,7 +84,7 @@ public final class Race implements Affine {
     }
 
     public boolean isOp() {
-        return this == ALICORN && !Unicopia.getConfig().allowAlicorn.get();
+        return this == ALICORN && !allowAlicorn;
     }
 
     public FlightType getFlightType() {

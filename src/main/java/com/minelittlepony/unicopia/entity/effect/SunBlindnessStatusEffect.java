@@ -23,6 +23,8 @@ import net.minecraft.world.World;
 public class SunBlindnessStatusEffect extends StatusEffect {
     public static final int MAX_DURATION = 250;
 
+    private static final int batBlindness = Unicopia.getConfig().batBlindness.get();
+
     SunBlindnessStatusEffect(int color) {
         super(StatusEffectCategory.NEUTRAL, color);
     }
@@ -38,7 +40,7 @@ public class SunBlindnessStatusEffect extends StatusEffect {
         if (!hasSunExposure(entity)) {
             entity.setStatusEffect(new StatusEffectInstance(this, (int)(state.getDuration() * 0.8F), amplifier, true, false), entity);
         } else {
-            if (entity.age % 15 == 0 && Unicopia.getConfig().batBlindness.get() > 2) {
+            if (entity.age % 15 == 0 && batBlindness > 2) {
                 entity.damage(DamageSource.IN_FIRE, amplifier / 20F);
             }
         }

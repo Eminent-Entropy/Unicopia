@@ -23,7 +23,7 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
             .addComment("If true alicorns are a vaild choosable race in survival")
             .addComment("May require cheats enabled to allow the /race command to access");
 
-    public final Setting<Integer> batBlindness = value("server", "batBlindness", 3)
+    public final Setting<Integer> batBlindness = value("client", "batBlindness", 3)
             .addComment("Sets how much a bat pony is affected by the sun")
             .addComment("0 - no effect")
             .addComment("1 - whiteout on inital contact")
