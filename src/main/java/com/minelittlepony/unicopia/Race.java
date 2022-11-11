@@ -9,6 +9,7 @@ import org.spongepowered.include.com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.minelittlepony.unicopia.ability.magic.Affine;
 import com.minelittlepony.unicopia.util.Registries;
+import com.minelittlepony.unicopia.Unicopia;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
@@ -53,6 +54,8 @@ public final class Race implements Affine {
 
     public static void bootstrap() {}
 
+    private static boolean allowAlicorn = Unicopia.getConfig().allowAlicorn.get();
+
     private final boolean magic;
     private final FlightType flight;
     private final boolean earth;
@@ -81,7 +84,7 @@ public final class Race implements Affine {
     }
 
     public boolean isOp() {
-        return this == ALICORN;
+        return this == ALICORN && !allowAlicorn;
     }
 
     public FlightType getFlightType() {
