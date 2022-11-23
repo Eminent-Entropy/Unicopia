@@ -30,6 +30,20 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
             .addComment("2 - added ringing noise")
             .addComment("3 - added burning effect (default)");
 
+    public final Setting<Integer> turbulenceLevel = value("client", "turbulenceLevel", 3)
+            .addComment("Determines how severe weather pushes flying players around")
+            .addComment("0 - none")
+            .addComment("1 - quarter default")
+            .addComment("2 - half default")
+            .addComment("3 - default")
+            .addComment("4 - double default");
+
+    public final Setting<Integer> turbulenceFrequency = value("client", "turbulenceFrequency", 3)
+            .addComment("Determines how often weather pushes players around")
+            .addComment("0 - half default")
+            .addComment("1 - default")
+            .addComment("2 - double default");
+
     public final Setting<Race> preferredRace = value("client", "preferredRace", Race.EARTH)
             .addComment("The default preferred race")
             .addComment("This is the race a client requests when first joining a game")

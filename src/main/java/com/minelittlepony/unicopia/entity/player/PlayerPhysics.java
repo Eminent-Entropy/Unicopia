@@ -41,6 +41,9 @@ public class PlayerPhysics extends EntityPhysics<PlayerEntity> implements Tickab
     private static final int IDLE_FLAP_INTERVAL = 20;
     private static final int GLIDING_SOUND_INTERVAL = 200;
 
+    private static final int TURBULENCE_LEVEL = Unicopia.getConfig().turbulenceLevel.get();
+    private static final int TURBULENCE_FREQUENCY = Unicopia.getConfig().turbulenceFrequency.get();
+
     private int ticksInAir;
     private int ticksToGlide;
 
@@ -566,14 +569,31 @@ public class PlayerPhysics extends EntityPhysics<PlayerEntity> implements Tickab
         float glance = 360 * rng.nextFloat();
         float forward = 0.015F * rng.nextFloat() * entity.world.getRainGradient(1);
 
-        if (entity.world.random.nextInt(30) == 0) {
-            forward *= 10;
+        float levelMultiplier = 1;
+        int freqDiv = 2;
+
+        switch (TURBULENCE_LEVEL) {
+            case 0 : levelMultiplier = 0; break;
+            case 1 : levelMultiplier = 0.25F; break;
+            case 2 : levelMultiplier = 0.5F; break;
+            case 3 : levelMultiplier = 1; break;
+            case 4 : levelMultiplier = 2; break;
         }
-        if (entity.world.random.nextInt(30) == 0) {
-            forward *= 10;
+        
+        switch (TURBULENCE_FREQUENCY) {
+            case 0 : freqDiv = 4; break;
+            case 1 : freqDiv = 2; break;
+            case 2 : freqDiv = 1; break;
         }
-        if (entity.world.random.nextInt(40) == 0) {
-            forward *= 100;
+
+        if (entity.world.random.nextInt(60 / freqDiv) == 0) {
+            forward *= 10 * levelMultiplier;
+        }
+        if (entity.world.random.nextInt(60 / freqDiv) == 0) {
+            forward *= 10 * levelMultiplier;
+        }
+        if (entity.world.random.nextInt(80 / freqDiv) == 0) {
+            forward *= 100 * levelMultiplier;
         }
 
         if (entity.world.isThundering() && rng.nextInt(60) == 0) {
