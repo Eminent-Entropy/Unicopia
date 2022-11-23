@@ -24,9 +24,9 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
             .addComment("May require cheats enabled to allow the /race command to access");
 
     public final Setting<Integer> batBlindness = value("client", "batBlindness", 3)
-            .addComment("Sets how much a bat pony is affected by the sun")
-            .addComment("0 - no effect")
-            .addComment("1 - whiteout on inital contact")
+            .addComment("Sets how much a bat pony is affected by sun blindness")
+            .addComment("0 - sun blindness effect removed (bats still have their natural light sensitivity)")
+            .addComment("1 - whiteout on inital contact with sunlight")
             .addComment("2 - added ringing noise")
             .addComment("3 - added burning effect (default)");
 
@@ -38,7 +38,7 @@ public class Config extends com.minelittlepony.common.util.settings.Config {
             .addComment("3 - default")
             .addComment("4 - double default");
 
-    public final Setting<Integer> turbulenceFrequency = value("client", "turbulenceFrequency", 3)
+    public final Setting<Integer> turbulenceFrequency = value("client", "turbulenceFrequency", 1)
             .addComment("Determines how often weather pushes players around")
             .addComment("0 - half default")
             .addComment("1 - default")
