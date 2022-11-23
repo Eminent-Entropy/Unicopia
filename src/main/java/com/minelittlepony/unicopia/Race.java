@@ -52,9 +52,9 @@ public final class Race implements Affine {
     public static final Race ALICORN = register("alicorn", true, FlightType.AVIAN, true);
     public static final Race CHANGELING = register("changeling", false, FlightType.INSECTOID, false);
 
-    public static void bootstrap() {}
+	private static boolean ALLOW_ALICORN = Unicopia.getConfig().allowAlicorn.get();
 
-    private static boolean allowAlicorn = Unicopia.getConfig().allowAlicorn.get();
+    public static void bootstrap() {}
 
     private final boolean magic;
     private final FlightType flight;
@@ -84,7 +84,7 @@ public final class Race implements Affine {
     }
 
     public boolean isOp() {
-        return this == ALICORN && !allowAlicorn;
+        return this == ALICORN && !ALLOW_ALICORN;
     }
 
     public FlightType getFlightType() {

@@ -74,7 +74,7 @@ public class Pony extends Living<PlayerEntity> implements Transmittable, Copieab
 
     private static final TrackedData<NbtCompound> EFFECT = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.NBT_COMPOUND);
 
-    private static final int batBlindness = Unicopia.getConfig().batBlindness.get();
+    private static final int BAT_BLINDNESS = Unicopia.getConfig().batBlindness.get();
 
     private final AbilityDispatcher powers = new AbilityDispatcher(this);
     private final PlayerPhysics gravity = new PlayerPhysics(this);
@@ -378,7 +378,7 @@ public class Pony extends Living<PlayerEntity> implements Transmittable, Copieab
             ticksHanging = 0;
         }
 
-        if (getSpecies() == Race.BAT && !entity.hasPortalCooldown() && batBlindness > 0) {
+        if (getSpecies() == Race.BAT && !entity.hasPortalCooldown() && BAT_BLINDNESS > 0) {
             if (SunBlindnessStatusEffect.hasSunExposure(entity)) {
                 if (ticksInSun < 200) {
                     ticksInSun++;
@@ -388,7 +388,7 @@ public class Pony extends Living<PlayerEntity> implements Transmittable, Copieab
                     entity.addStatusEffect(new StatusEffectInstance(UEffects.SUN_BLINDNESS, SunBlindnessStatusEffect.MAX_DURATION, 1, true, false));
                     if (!isClient()) {
                         UCriteria.LOOK_INTO_SUN.trigger(entity);
-                    } else if (isClientPlayer() && batBlindness > 1) {
+                    } else if (isClientPlayer() && BAT_BLINDNESS > 1) {
                         InteractionManager.instance().playLoopingSound(entity, InteractionManager.SOUND_EARS_RINGING, getEntity().getId());
                     }
                 }
